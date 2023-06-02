@@ -7,7 +7,8 @@ import InfoCard from '../components/InfoCard';
 import FooterCard from '../components/FooterCard';
 import React from 'react';
 import { useState } from 'react';
-import FormModal from './FormModal';
+import FormModal from '../components/FormModal';
+import Header from '../components/Header';
 
 const Home: NextPage = () => {
   const [visible, setVisible] = React.useState(false);
@@ -21,26 +22,7 @@ const Home: NextPage = () => {
     <Container>
       
       {/* Navbar */}
-      <Navbar isCompact variant={"static"}>
-        <Navbar.Brand>
-          <Text b color="inherit">
-            Travel Blogs
-          </Text>
-        </Navbar.Brand>
-        <Navbar.Content hideIn="md">
-          <Navbar.Link href="#">Travel Platform</Navbar.Link>
-          <Navbar.Link href="#">Community</Navbar.Link>
-          <Navbar.Link href="#">Contact Us</Navbar.Link>
-        </Navbar.Content>
-        <Navbar.Content>
-          <Navbar.Link href="#">Login</Navbar.Link>
-          <Navbar.Item>
-            <Button auto flat href="#">
-              Sign Up
-            </Button>
-          </Navbar.Item>
-        </Navbar.Content>
-      </Navbar>
+      <Header/>
 
       {/* Jumbotron */}
       <Grid.Container justify="center" css={{ "height": "500px", "backgroundImage": "url(https://littlevisuals.co/images/sunset.jpg)" }}>
