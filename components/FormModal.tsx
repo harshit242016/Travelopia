@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button, Text, Input, Row, Checkbox } from "@nextui-org/react";
 import { useState, useEffect } from "react";
-import sendUserDetails from "../utils/sendUserDetails";
+
 const FormModal = (props : any) => {
     const {visible,closeHandler}= props;
     const [formData, setFormData] = useState({});
@@ -25,7 +25,6 @@ const FormModal = (props : any) => {
         });
         const data = await response.json();
         console.log(response);
-        
     };
     return (
         <Modal

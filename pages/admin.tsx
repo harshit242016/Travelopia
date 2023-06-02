@@ -1,32 +1,50 @@
 import UserTable from '../components/UserTable';
-import getUserDetails from '../utils/getUserDetails';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
 export default function Admin() {
-    const cols = [
-        {
-            key: "name",
-            label: "NAME",
-        },
-        {
-            key: "role",
-            label: "ROLE",
-        },
-        {
-            key: "status",
-            label: "STATUS",
-        }
-    ];
-    const [users, setUsers] = useState<any>();
+  const cols = [
+    {
+      key: "name",
+      label: "NAME",
+    },
+    {
+      key: "role",
+      label: "ROLE",
+    },
+    {
+      key: "status",
+      label: "STATUS",
+    }
+  ];
 
-    useEffect(() => {
-        async function fetchData() {
-            const data = await getUserDetails();
-            setUsers(data);
-        }
-        fetchData();
-    },[]);
+  const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState([]);
 
-    return (
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const res = await fetch('/api/getFormData');
+        if (!res.ok) {
+          throw new Error(`Failed to fetch users: ${res.status} ${res.statusText}`);
+        }
+        const jsonData = await res.json();
+        setUsers(jsonData);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchUsers();
+  }, []);
+
+  return (
+    <>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
         <UserTable columns={cols} rows={users} />
-    );
+      )}
+    </>
+  );
 }
