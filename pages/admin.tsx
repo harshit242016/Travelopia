@@ -61,7 +61,7 @@ export default function Admin() {
   );
 }
 
-const styles = {
+const styles: Record<string, any> = {
   loadingContainer: {
     position: 'fixed',
     top: 0,
