@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Text, Button, Grid, Col } from '@nextui-org/react';
 
-const Header = (props : any) => {
+const Header = () => {
     return (
         <>
         <Navbar isCompact variant={"static"}>

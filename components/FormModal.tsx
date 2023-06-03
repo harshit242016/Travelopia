@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Button, Text, Input } from "@nextui-org/react";
 
-const FormModal = ({ visible, closeHandler }) => {
+interface Props {
+  visible: boolean;
+  closeHandler: any;
+}
+
+const FormModal = ({ visible, closeHandler } : Props) => {
   const [formData, setFormData] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);

@@ -1,17 +1,19 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { Container, Navbar, Text, Button, Grid } from '@nextui-org/react';
-import React from 'react';
-import Header from '../components/Header';
-import Jumbotron from '../components/Jumbotron';
-import ProductCards from '../components/ProductCards';
-import FormModal from '../components/FormModal';
-// import Footer from '../components/FooterCard';
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { Container, Grid, Button } from "@nextui-org/react";
+import React from "react";
+import { useState } from "react";
+import Header from "../components/Header";
+import Jumbotron from "../components/Jumbotron";
+import ProductCards from "../components/ProductCards";
+import FormModal from "../components/FormModal";
+import FooterCard from "../components/FooterCard";
 
 const Home: NextPage = () => {
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
+
   const openModalHandler = () => setVisible(true);
 
   const closeModalHandler = () => {
@@ -27,21 +29,21 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header/>
+      <Header />
 
-      <Jumbotron onButtonClick={openModalHandler}/>
+      <Jumbotron onButtonClick={openModalHandler} />
 
-      <ProductCards/>
+      <ProductCards />
 
       <FormModal
-        closeButton
         aria-labelledby="modal-title"
         visible={visible}
         closeHandler={closeModalHandler}
-      />
-      
-    </Container>
-  )
-}
+        />
 
-export default Home
+      <FormModal visible={visible} closeHandler={closeModalHandler} />
+    </Container>
+  );
+};
+
+export default Home;

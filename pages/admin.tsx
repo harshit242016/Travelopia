@@ -1,3 +1,4 @@
+import Header from '../components/Header';
 import UserTable from '../components/UserTable';
 import { useState, useEffect } from 'react';
 
@@ -8,12 +9,20 @@ export default function Admin() {
       label: "NAME",
     },
     {
-      key: "role",
-      label: "ROLE",
+      key: "email",
+      label: "EMAIL",
     },
     {
-      key: "status",
-      label: "STATUS",
+      key: "phone",
+      label: "PHONE",
+    },
+    {
+      key: "trip_duration",
+      label: "TRIP DURATION",
+    },
+    {
+        key: "description",
+        label: "DESCRIPTION",
     }
   ];
 
@@ -40,11 +49,36 @@ export default function Admin() {
 
   return (
     <>
+      <Header/>
       {loading ? (
-        <p>Loading...</p>
+        <div style={styles.loadingContainer}>
+          <div style={styles.loadingCircle}></div>
+        </div>
       ) : (
         <UserTable columns={cols} rows={users} />
       )}
     </>
   );
 }
+
+const styles = {
+  loadingContainer: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  loadingCircle: {
+    width: '50px',
+    height: '50px',
+    borderRadius: '50%',
+    border: '5px solid #fff',
+    borderTopColor: '#000',
+    animation: 'spin 1s ease-in-out infinite'
+  }
+};
